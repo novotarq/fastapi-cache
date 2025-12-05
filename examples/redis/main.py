@@ -1,6 +1,6 @@
 # pyright: reportGeneralTypeIssues=false
-import time
 from contextlib import asynccontextmanager
+import time
 from typing import AsyncIterator
 
 import pendulum
@@ -18,7 +18,6 @@ from starlette.responses import JSONResponse, Response
 
 import redis.asyncio as redis
 from redis.asyncio.connection import ConnectionPool
-
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
@@ -66,7 +65,7 @@ async def get_data(request: Request, response: Response):
 # Note: This function MUST be sync to demonstrate fastapi-cache's correct handling,
 # i.e. running cached sync functions in threadpool just like FastAPI itself!
 @app.get("/blocking")
-@cache(namespace="test", expire=10) # pyright: ignore[reportArgumentType]
+@cache(namespace="test", expire=10)
 def blocking():
     time.sleep(2)
     return {"ret": 42}
